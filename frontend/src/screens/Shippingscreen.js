@@ -1,26 +1,36 @@
 import React,{useState,useEffect} from 'react'
-import {useSearchParams,useParams,useNavigate, Navigate} from 'react-router-dom'
+import {useSearchParams,useNavigate} from 'react-router-dom'
 import { Form,Button } from "react-bootstrap"
 import {useDispatch,useSelector} from 'react-redux'
 import FormContainer from '../components/FormContainer'
+import CheckoutSteps from '../components/CheckoutSteps'
+import { saveShippingAddress } from '../actions/cartAction'
 
 
 function Shippingscreen() {
 
+  const cart = useSelector(state => state.cart)
+  const {shippingAddress} = cart
+
+  const dispatch = useDispatch()
+
   const navigate = useNavigate()
   const searchParams= useSearchParams()
-  const [address,setAddress] =useState()
-  const [city,setCity] =useState()
-  const [postalCode,setPostalCode] =useState()
-  const [country,setCountry] =useState()
+
+  const [address,setAddress] =useState(shippingAddress.address)
+  const [city,setCity] =useState(shippingAddress.city)
+  const [postalCode,setPostalCode] =useState(shippingAddress.postalCode)
+  const [country,setCountry] =useState(shippingAddress.country)
 
   const submitHandler = (e) => {
     e.preventDefault()
-    console.log('submitted')
+    dispatch(saveShippingAddress({ address,city,postalCode,country }))
+    navigate('/payment')
   }
 
   return (
     <FormContainer>
+      <CheckoutSteps step1 step2/>
       <center><h1>Shipping</h1></center>
       <Form onSubmit={submitHandler}>
 

@@ -123,7 +123,7 @@ function ProductScreen() {
                     <center>
                       <Button
                         onClick={addToCartHandler}
-                        className="btn-block"
+                        className="w-100"
                         disabled={product.countInStock == 0}
                         type="button"
                       >
