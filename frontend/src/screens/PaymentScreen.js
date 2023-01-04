@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react'
-import {useSearchParams,useNavigate} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 import { Form,Button,Col } from "react-bootstrap"
 import {useDispatch,useSelector} from 'react-redux'
 import FormContainer from '../components/FormContainer'

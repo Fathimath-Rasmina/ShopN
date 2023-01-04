@@ -106,7 +106,7 @@ function OrderScreen() {
                                 {order.paymentMethod === "razorpay4" && `RazorPay`}
 
                                 {order.isPaid ? (
-                                    <Message variant='success'>Paid On {order.paidAt}</Message>
+                                    <Message variant='success'>Paid On {order.paidAt.substring(0,10)}</Message>
                                 ):(
                                     <Message variant='warning'>Not Paid</Message>
                                 )}
